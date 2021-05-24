@@ -1,2 +1,9 @@
 # Automatic-Signal-Detector
-This is a project from Machine Learning and Computer Vision course using Adaboost Algorithm to detect faces, CAM-Shift to tracking faces efficiently and finally Deep Learning models to detect hand images
+The goal of this project is to automatically detect hand gestures using:
+
+1.Your laptop camera
+
+2.opencv
+
+3.Google Colab
+
