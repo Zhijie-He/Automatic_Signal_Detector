@@ -1,12 +1,21 @@
 # Automatic-Signal-Detector
 
-The goal of this project is to automatically detect hand gestures using:
+## Abstract
 
-1.Your laptop camera
+### Common way to detect faces using Haar Cascades
+<img src="images/tradition_way.gif" width="50%" height="50%"/>
 
-2.opencv
+### Optimization by seraching subregion 
+<img src="images/tradition_way.gif" width="50%" height="50%"/>
 
-3.Google Colab
+### MeanShift
+<img src="images/meanShift.gif" width="50%" height="50%"/>
+
+### CamShift 
+<img src="images/CamShift.gif" width="50%" height="50%"/>
+
+## Getting Started
+
 
 <img src="http://www.he-zhijie.com/Signal/Signal_Language.png" alt="" width="642" height="782"/><figcaption>Signal Languages</figcaption></figure>
 <h3>Transfer Learning using pre-trained VGG(task 6)</h3>
