@@ -6,7 +6,7 @@
 <img src="images/tradition_way.gif" width="50%" height="50%"/>
 
 ### Optimization by seraching subregion 
-<img src="images/tradition_way.gif" width="50%" height="50%"/>
+<img src="images/search_region.gif" width="50%" height="50%"/>
 
 ### MeanShift
 <img src="images/meanShift.gif" width="50%" height="50%"/>
