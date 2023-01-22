@@ -109,7 +109,7 @@ def create_dataset(signal_name):
         k = cv2.waitKey(30) & 0xff
         if k == 27:
             break
-        if k == 121: # "y"
+        if k == 121: # press "y" to record
             if cropped_hand_bbox[1][1] !=0:
                 try:
                     cropped_hand = cv2.cvtColor(img[cropped_hand_bbox[0][1]:cropped_hand_bbox[1][1], cropped_hand_bbox[0][0]:cropped_hand_bbox[1][0]], cv2.COLOR_BGR2GRAY)
