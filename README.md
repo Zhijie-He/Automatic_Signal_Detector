@@ -19,3 +19,6 @@ The goal of this project is to automatically detect hand gestures using:
 <div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://www.he-zhijie.com/trainsfer%20learning%20accuracy.png" alt=""/></a></div>
 
 <h4><a href="http://1.116.134.216/automatic-signal-detector/">Read More</a></h4>
+
+<video src="basicvideo.mp4" controls="controls" style="max-width: 730px;">
+</video>
