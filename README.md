@@ -18,6 +18,4 @@ The goal of this project is to automatically detect hand gestures using:
 <h3>Transfer Learning using pre-trained VGG(task 9)</h3>
 <div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://www.he-zhijie.com/trainsfer%20learning%20accuracy.png" alt=""/></a></div>
 
-
-<video src="basicvideo.mp4" controls="controls" style="max-width: 730px;">
-</video>
+<img src="images/test.gif" width="80%" height="80%"/>
