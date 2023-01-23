@@ -85,10 +85,10 @@ python main model_name
      <td>CamShift </td>
   </tr>
   <tr>
-    <td><img src="images/tradition_way.gif" width=640 height=180></td>
-    <td><img src="images/search_region.gif" width=640 height=180></td>
-    <td><img src="images/meanShift.gif" width=640 height=180></td>
-    <td><img src="images/CamShift.gif" width=640 height =180></td>
+    <td><img src="images/tradition_way.gif" width=350 height=300></td>
+    <td><img src="images/search_region.gif" width=350 height=300></td>
+    <td><img src="images/meanShift.gif" width=350 height=300></td>
+    <td><img src="images/CamShift.gif" width=350 height =300></td>
   </tr>
  </table>
 
