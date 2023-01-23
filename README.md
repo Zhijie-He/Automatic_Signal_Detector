@@ -47,11 +47,11 @@ python main model_name
 ## Model Performance
 
 <h3>MLP</h3>
-<img src="images/MLP_performance.png" alt="" width="417" height="382"/>
+<img src="images/MLP_performance.png" width="100%" height="50%"/>
 
 <h3>CNN</h3>
 
-<img src="images/CNN_performance.png" alt="" width="417" height="382"/>
+<img src="images/CNN_performance.png" width="100%" height="50%"/>
 
 <h3>Transfer Learning</h3>
-<img src="images/TF_performance.png" alt="" width="417" height="382"/>
+<img src="images/TF_performance.png" width="100%" height="50%"/>
