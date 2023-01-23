@@ -12,9 +12,39 @@ In this project, there are two parts:
 In order to create hands dataset, we need to find a way to detect our hands. There are some pattern detecting faces and eyes. Given that patterns, we use Camshift algorithm to detect hands by setting face region probability to zero, and then it's likely that hands is the most likely region to be detected.
 
 ## Getting Started
-Get code: `git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git`
+Clone the repository.
 
-## Running the code
+```
+git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git
+```
+
+Goto the cloned folder.
+```
+cd Automatic_Signal_Detector
+```
+
+## Steps to run Code
+
+```
+### For Linux Users
+python3 -m venv psestenv
+source psestenv/bin/activate
+
+### For Window Users
+python3 -m venv psestenv
+cd psestenv
+cd Scripts
+activate
+cd ..
+cd ..
+```
+
+Install requirements with mentioned command below.
+
+```
+pip install -r requirements.txt
+```
+
 
 Create hands dataset
 
@@ -63,6 +93,7 @@ python main model_name
 <img src="images/CamShift.gif" width="50%" height="50%"/>
 
 ## Model Performance
+
 
 <h3>MLP</h3>
 <img src="images/MLP_performance.png" width="100%" height="50%"/>
