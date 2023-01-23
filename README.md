@@ -106,3 +106,7 @@ python main model_name
 
 <h3>Transfer Learning</h3>
 <img src="images/TF_performance.png" width="100%" height="50%"/>
+
+
+## Other
+[Colab Notebook Tutorial](https://drive.google.com/drive/folders/1R6A0EZhAfrnvhZVXcoZEOYRCXRlphjhp?usp=sharing)
