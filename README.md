@@ -1,6 +1,33 @@
-# Automatic-Signal-Detector
+# Automatic_Signal_Detector
 
 ## Abstract
+In this project, there are two parts:
+- create hands dataset
+- train model to recognize hands (Here, implemented three models: MLP, CNN, Transfer Learning)
+
+
+
+<img src="images/Signal_Language.png" width="50%" height="50%"/>
+
+## Getting Started
+Get code: `git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git`
+
+## Running the code
+
+Create hands dataset
+
+```bash
+python create_hands_dataset [A-Z]
+```
+- `--[A-Z]` specifies the signal name.
+
+Train model to recoginze
+```bash
+python main model_name
+```
+- `model_name` specifies the model name, can select from MLP, CNN and TF.
+
+## Different ways to detect face
 
 ### Common way to detect faces using Haar Cascades
 <img src="images/tradition_way.gif" width="50%" height="50%"/>
@@ -17,16 +44,14 @@
 ### CamShift 
 <img src="images/CamShift.gif" width="50%" height="50%"/>
 
-## Getting Started
-git clone
+## Model Performance
 
-<img src="images/Signal_Language.png" width="50%" height="50%"/>
+<h3>MLP</h3>
+<img src="images/MLP_performance.png" alt="" width="417" height="382"/>
 
-<h3>Transfer Learning using pre-trained VGG(task 6)</h3>
-<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://www.he-zhijie.com/samples.png" alt="" width="417" height="382"/></a></div>
-<h3>Transfer Learning using pre-trained VGG(task 7)</h3>
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://www.he-zhijie.com/MLP%20accuracy.png" alt=""/></a></div>
-<h3>Transfer Learning using pre-trained VGG(task 8)</h3>
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://1.116.134.216/wp-content/uploads/2021/05/image.png" alt="" class="wp-image-407"/></a></div>
-<h3>Transfer Learning using pre-trained VGG(task 9)</h3>
-<div class="wp-block-image"><figure class="aligncenter size-large"><a href="https://github.com/Zhijie-He/Automatic-Signal-Detector/tree/main/Task"><img src="http://www.he-zhijie.com/trainsfer%20learning%20accuracy.png" alt=""/></a></div>
+<h3>CNN</h3>
+
+<img src="images/CNN_performance.png" alt="" width="417" height="382"/>
+
+<h3>Transfer Learning</h3>
+<img src="images/TF_performance.png" alt="" width="417" height="382"/>

@@ -1,8 +1,13 @@
 
 import cv2
 import imageio
+import os
 import numpy as np
 import matplotlib.pyplot as plt
+import glob
+import keras.utils as image
+from keras.applications.vgg19 import preprocess_input
+from sklearn.model_selection import train_test_split
 
 def load_cascade(cascade_file_path):
     cascade = cv2.CascadeClassifier(cascade_file_path)
@@ -91,3 +96,101 @@ def crop_hand(pts, im_width, im_height):
   x_br, y_br = min(im_width, max(pts[:, 0])), min(im_height, max(pts[:, 1]))
 
   return(x_tl, y_tl),(x_br, y_br)
+
+
+def save_plot(history, path, model_name="latest"):
+  plt.figure(figsize=(10,5))
+  plt.subplot(1,2,1)
+  plt.plot(history.history['accuracy'], label='train accuracy')
+  plt.plot(history.history['val_accuracy'], label = 'val accuracy')
+  plt.xlabel('Epoch')
+  plt.ylabel('Accuracy')
+  plt.legend(loc='lower right')
+  plt.subplot(1,2,2)
+  plt.plot(history.history['loss'], label='train loss')
+  plt.plot(history.history['val_loss'], label = 'val loss')
+  plt.xlabel('Epoch')
+  plt.ylabel('Loss')
+  plt.legend(loc='lower right')
+  plt.suptitle(model_name)
+  plt.savefig(os.path.join(path, model_name + '_performance.png'))
+
+
+def MLP_load_data(path):
+  samples = []
+  letters = []
+  for folder in glob.glob(path+'/*'):
+
+    label = folder.split('\\')[-1]
+    # convert label from str to int
+    label = ord(label)-ord('A')
+
+    for images in glob.glob(folder+'/*'):
+      img = cv2.imread(images)
+      # convert img into grayscale
+      img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+      # here it's important to use flatten to reduce one dim
+      img_gray = np.reshape(img_gray, (1024,-1)).flatten()
+      samples.append(img_gray)
+      letters.append(label)
+  return np.array(samples), np.array(letters)
+
+def CNN_load_data(path):
+  samples = []
+  letters = []
+  for folder in glob.glob(path+'/*'):
+
+    label = folder.split('\\')[-1]
+    # convert label from str to int
+    label = ord(label)-ord('A')
+
+    for images in glob.glob(folder+'/*'):
+      img = cv2.imread(images, cv2.IMREAD_GRAYSCALE)
+      # convert img into grayscale
+      #img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+      # here it's important to use flatten to reduce one dim
+      samples.append(img)
+      letters.append(label)
+  return np.array(samples), np.array(letters)
+
+def get_images_number(path_to_images):
+  number = []
+  paths_list = sorted(glob.glob(path_to_images + "/*"))
+  for label in paths_list:
+    number.append(len(glob.glob(label + "/*")))
+  return number
+  
+def TL_load_data(path_to_images):
+  # get the numbers of each label
+  images_number = get_images_number(path_to_images)
+  # create samples array
+  samples = np.empty((sum(images_number), 32, 32, 3))
+  letters = []
+  index = 0
+  for folder in sorted(glob.glob(path_to_images+'/*')):
+    label = folder.split('\\')[-1]
+    # convert label from str to int
+    label = ord(label)-ord('A')
+    
+    for image_path in sorted(glob.glob(folder+"/*")):
+      # load the image
+      img = image.load_img(image_path)
+      # convert the image into array
+      img = image.img_to_array(img)
+      # convert the images from RGB to BGR, then will zero-center each color channel with respect to the ImageNet dataset, without scaling.
+      img = preprocess_input(img)
+      # save the solved img 
+      samples[index] = img
+      index += 1
+      letters.append(label)
+  return samples, np.array(letters)
+
+def split_dataset(samples, letters):
+  # split dataset
+  x_train, x_test, y_train, y_test = train_test_split(
+  samples, letters, test_size=0.1, random_state=42)
+
+  x_train, x_val, y_train, y_val = train_test_split(
+  x_train, y_train, test_size=0.2, random_state=42)
+
+  return x_train, y_train, x_train, y_test, x_val, y_val
