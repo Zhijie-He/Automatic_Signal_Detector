@@ -7,8 +7,8 @@ In this project, there are two parts:
 
 
 
-<img src="images/Signal_Language.png" width="50%" height="50%"/>
-
+<img src="images/Signal_Language.png" width="40%" height="40%"/>
+<img src="images/dataset.png" width="40%" height="40%"/>
 ## Getting Started
 Get code: `git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git`
 
