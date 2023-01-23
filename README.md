@@ -20,6 +20,7 @@ python create_hands_dataset [A-Z]
 
 Select the face capture by type "y"
 After decide the face bounding, type "y" to create hand dataset according to the hands gesture(Signal_Language).
+<img src="images/create_hand_dataset.png" width="40%" height="40%"/>
 
 Train model to recoginze
 ```bash
@@ -27,10 +28,9 @@ python main model_name
 ```
 - `model_name` specifies the model name, can select from MLP, CNN and TF.
 
-## Create hands dataset
+## Hands dataset example
 
 <img src="images/dataset.png" width="40%" height="40%"/>
-<img src="images/create_hand_dataset.png" width="40%" height="40%"/>
 
 ## Different ways to detect face
 
