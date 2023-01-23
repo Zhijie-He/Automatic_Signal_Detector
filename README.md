@@ -77,20 +77,22 @@ python main model_name
 
 ## Different ways to detect face
 
-### Common way to detect faces using Haar Cascades
-<img src="images/tradition_way.gif" width="50%" height="50%"/>
+<table>
+  <tr>
+    <td>Common way to detect faces using Haar Cascades</td>
+     <td>Optimization by seraching subregion </td>
+     <td>MeanShift</td>
+     <td>CamShift </td>
+  </tr>
+  <tr>
+    <td><img src="images/tradition_way.gif" width=640 height=180></td>
+    <td><img src="images/search_region.gif" width=640 height=180></td>
+    <td><img src="images/meanShift.gif" width=640 height=180></td>
+    <td><img src="images/CamShift.gif" width=640 height =180></td>
+  </tr>
+ </table>
 
 
-### Optimization by seraching subregion 
-<img src="images/search_region.gif" width="50%" height="50%"/>
-
-
-### MeanShift
-<img src="images/meanShift.gif" width="50%" height="50%"/>
-
-
-### CamShift 
-<img src="images/CamShift.gif" width="50%" height="50%"/>
 
 ## Model Performance
 
