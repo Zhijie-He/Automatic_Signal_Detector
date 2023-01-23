@@ -1,5 +1,6 @@
 # Automatic_Signal_Detector
 <img src="images/Signal_Language.png" width="40%" height="40%"/>
+
 ## Abstract
 In this project, there are two parts:
 - create hands dataset
@@ -16,6 +17,9 @@ Create hands dataset
 python create_hands_dataset [A-Z]
 ```
 - `--[A-Z]` specifies the signal name.
+
+Select the face capture by type "y"
+After decide the face bounding, type "y" to create hand dataset according to the hands gesture(Signal_Language).
 
 Train model to recoginze
 ```bash
