@@ -1,14 +1,10 @@
 # Automatic_Signal_Detector
-
+<img src="images/Signal_Language.png" width="40%" height="40%"/>
 ## Abstract
 In this project, there are two parts:
 - create hands dataset
 - train model to recognize hands (Here, implemented three models: MLP, CNN, Transfer Learning)
 
-
-
-<img src="images/Signal_Language.png" width="40%" height="40%"/>
-<img src="images/dataset.png" width="40%" height="40%"/>
 ## Getting Started
 Get code: `git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git`
 
@@ -26,6 +22,11 @@ Train model to recoginze
 python main model_name
 ```
 - `model_name` specifies the model name, can select from MLP, CNN and TF.
+
+## Create hands dataset
+
+<img src="images/dataset.png" width="40%" height="40%"/>
+<img src="images/create_hand_dataset.png" width="40%" height="40%"/>
 
 ## Different ways to detect face
 
