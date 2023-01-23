@@ -1,10 +1,15 @@
 # Automatic_Signal_Detector
-<img src="images/Signal_Language.png" width="40%" height="40%"/>
+
+<p align="center">
+   <img src="images/Signal_Language.png" width="40%" height="40%"/>
+</p>
 
 ## Abstract
 In this project, there are two parts:
-- create hands dataset
-- train model to recognize hands (Here, implemented three models: MLP, CNN, Transfer Learning)
+- Create hands dataset
+- Train model to recognize hands (Here, implemented three models: MLP, CNN, Transfer Learning)
+
+In order to create hands dataset, we need to find a way to detect our hands. There are some pattern detecting faces and eyes. Given that patterns, we use Camshift algorithm to detect hands by setting face region probability to zero, and then it's likely that hands is the most likely region to be detected.
 
 ## Getting Started
 Get code: `git clone https://github.com/Zhijie-He/Automatic_Signal_Detector.git`
@@ -27,7 +32,7 @@ After decide the face bounding, type "y" to create hand dataset according to the
    <img src="images/create_hand_dataset.png" width="40%" height="40%"/>
 </p>
 
-Train model to recoginze
+Train model to recoginze signal language, see model performance below
 ```bash
 python main model_name
 ```
