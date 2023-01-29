@@ -99,7 +99,15 @@ def parse_opt():
     opt = parser.parse_args()
     return opt
 
-
+def log_image_table(images, predicted, labels, probs, num_classes):
+    "Log a wandb.Table with (img, pred, target, scores)"
+    # 🐝 Create a wandb Table to log images, labels and predictions to
+    table = wandb.Table(columns=["image", "pred", "target"]+[f"score_{chr(i+65)}" for i in range(num_classes)])
+    for img, pred, targ, prob in zip(images.numpy(), predicted.numpy(), labels.numpy(), probs.numpy()):
+        table.add_data(wandb.Image(img*255), chr(pred+65), chr(targ+65), *prob)
+    wandb.log({"predictions_table":table}, commit=False)
+    
+    
 if __name__ == "__main__":
     args = parse_opt()
     # create wandb
@@ -123,6 +131,7 @@ if __name__ == "__main__":
         samples, letters = helper.TL_load_data(path)
     
     num_classes = len(np.unique(letters))
+    
     x_train, y_train, x_test, y_test, x_val, y_val = helper.split_dataset(samples, letters)
 
     if model_name == "MLP":
@@ -157,6 +166,7 @@ if __name__ == "__main__":
     # convert class vectors to binary class matrices
     y_train = keras.utils.to_categorical(y_train, num_classes)
     y_val = keras.utils.to_categorical(y_val, num_classes)
+    y_test = keras.utils.to_categorical(y_test, num_classes)
     if model_name == "MLP":
         model = MLP(input_shape, num_classes)
     elif model_name == "TF":
@@ -170,16 +180,19 @@ if __name__ == "__main__":
                         verbose=1,
                         validation_data=(x_val, y_val)
                         )
-    score = model.evaluate(x_val, y_val, verbose=0)
-
-    print('Validation loss:', score[0])
-    print('Validation accuracy:', score[1])
+    
+    score = model.evaluate(x_test, y_test, verbose=0)
+    print('Test loss:', score[0])
+    print('Test accuracy:', score[1])
     
     helper.save_plot(history, current_path + "/images", model_name)
-
+    
+    pred = model(x_test)
+    pred_labels = tf.math.argmax(pred, axis=1)
+    labels = tf.math.argmax(y_test, axis=1)
     if args.wandb:
+        log_image_table(x_test, pred_labels, labels, pred, num_classes)
         for i in range(epochs):
-            print(history.history['loss'][i])
             # 🐝 Log train metrics to wandb 
             train_metrics = {"train_loss": history.history['loss'][i],
                         "train_acc": history.history['accuracy'][i]

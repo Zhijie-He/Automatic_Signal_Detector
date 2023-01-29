@@ -188,10 +188,8 @@ def TL_load_data(path_to_images):
 
 def split_dataset(samples, letters):
   # split dataset
-  x_train, x_test, y_train, y_test = train_test_split(
-  samples, letters, test_size=0.1, random_state=42)
+  x_train, x_test, y_train, y_test = train_test_split(samples, letters, test_size=0.1, random_state=42)
 
-  x_train, x_val, y_train, y_val = train_test_split(
-  x_train, y_train, test_size=0.2, random_state=42)
+  x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=42)
 
-  return x_train, y_train, x_train, y_test, x_val, y_val
+  return x_train, y_train, x_test, y_test, x_val, y_val
