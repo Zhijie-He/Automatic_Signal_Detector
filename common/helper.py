@@ -151,6 +151,7 @@ def CNN_load_data(path):
       # here it's important to use flatten to reduce one dim
       samples.append(img)
       letters.append(label)
+      
   return np.array(samples), np.array(letters)
 
 def get_images_number(path_to_images):

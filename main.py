@@ -1,23 +1,25 @@
+# use cv2 to read image
+import os
+import time
+import wandb
+import torch
 import keras
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, GlobalAvgPool2D
-from keras.applications.vgg19 import VGG19
+import argparse
+import numpy as np
+import tensorflow as tf
 from keras.models import Model
 from keras.layers import Flatten
 from tensorflow.keras import layers
-import tensorflow as tf
-import argparse
-# use cv2 to read image
-import cv2
-import glob
-import numpy as np
+from keras.models import Sequential
+from keras.applications.vgg19 import VGG19
+from keras.layers import Dense, Dropout, Conv2D, MaxPooling2D, GlobalAvgPool2D
 
-from matplotlib import pyplot as plt
 from common import helper 
-import os
+
+# setting device on GPU if available, else CPU
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
-
 
 # MLP model
 def MLP(input_shape, num_classes):
@@ -88,12 +90,29 @@ def TF_model(input_shape, num_classes):
               metrics=['accuracy'])
     return classified_model
 
-if __name__ == "__main__":
+def parse_opt():
     model_choices = ["MLP", "CNN", "TF"]
     parser = argparse.ArgumentParser()
-    parser.add_argument('model_name', type=str, help='select the model name', choices=model_choices)
-    args = parser.parse_args()
+    parser.add_argument('--device', type=str, default='gpu', help='cpu/0,1,2,3(gpu)')   #device arugments
+    parser.add_argument("--wandb", required=False, help="Open wandb", action='store_true')
+    parser.add_argument('--model_name', type=str, help='select the model name', choices=model_choices)
+    opt = parser.parse_args()
+    return opt
 
+
+if __name__ == "__main__":
+    args = parse_opt()
+    # create wandb
+    run_id = int(time.time())
+    if args.wandb:
+        # Add `sync_tensorboard=True` when you start a W&B run
+        # W&B supports TensorBoard to automatically log all the metrics from your script into our dashboards 
+        wandb.init(
+            project="Automatic_signal_detection",
+            group=args.model_name,
+            name=f"experiment-{run_id}"
+        )
+        
     path = "Dataset/"
     model_name = args.model_name
     if model_name == "MLP":
@@ -102,7 +121,7 @@ if __name__ == "__main__":
         samples, letters = helper.CNN_load_data(path)
     elif model_name == "TF":
         samples, letters = helper.TL_load_data(path)
- 
+    
     num_classes = len(np.unique(letters))
     x_train, y_train, x_test, y_test, x_val, y_val = helper.split_dataset(samples, letters)
 
@@ -155,7 +174,22 @@ if __name__ == "__main__":
 
     print('Validation loss:', score[0])
     print('Validation accuracy:', score[1])
-
-
+    
     helper.save_plot(history, current_path + "/images", model_name)
 
+    if args.wandb:
+        for i in range(epochs):
+            print(history.history['loss'][i])
+            # 🐝 Log train metrics to wandb 
+            train_metrics = {"train_loss": history.history['loss'][i],
+                        "train_acc": history.history['accuracy'][i]
+                        }
+            wandb.log(train_metrics)
+            # 🐝 Log train metrics to wandb 
+            val_metrics = {"val_loss": history.history['val_loss'][i],
+                "val_acc": history.history['val_accuracy'][i]
+            }
+            wandb.log(val_metrics)
+            
+        # close wandb
+        wandb.finish()

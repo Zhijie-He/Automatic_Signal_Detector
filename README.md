@@ -64,9 +64,11 @@ After decide the face bounding, type "y" to create hand dataset according to the
 
 Train model to recoginze signal language, see model performance below
 ```bash
-python main model_name
+python main --model_name MLP --device cpu --wandb
 ```
 - `model_name` specifies the model name, can select from MLP, CNN and TF.
+- `device`       cpu/0,1,2,3(gpu)
+- `wandb`          Open wandb
 
 ## Hands dataset example
 
@@ -95,8 +97,7 @@ python main model_name
 
 
 ## Model Performance
-
-
+[Wandb workspace](https://wandb.ai/rlgames/Automatic_signal_detection?workspace=user-zhijie)
 <h3>MLP</h3>
 <img src="images/MLP_performance.png" width="100%" height="50%"/>
 
